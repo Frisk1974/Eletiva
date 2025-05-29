@@ -1,4 +1,12 @@
-// Revealing elements on scroll
+// Scroll suave ao clicar no botão
+function scrollToSection() {
+  const nextSection = document.querySelector('section');
+  if (nextSection) {
+    nextSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// Revelar seções com animação quando aparecem na tela
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -6,16 +14,16 @@ const observer = new IntersectionObserver(entries => {
     }
   });
 }, {
-  threshold: 0.1
+  threshold: 0.2
 });
 
 document.querySelectorAll('section').forEach(section => {
   observer.observe(section);
 });
 
-// Parallax fundo (extra opcional se quiser mais dinâmica)
+// Parallax background extra suave
 window.addEventListener('scroll', function () {
   const hero = document.querySelector('.hero');
-  let scrollPos = window.scrollY;
-  hero.style.backgroundPositionY = `${scrollPos * 0.5}px`;
+  const scrollY = window.scrollY;
+  hero.style.backgroundPositionY = `${scrollY * 0.5}px`;
 });

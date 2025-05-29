@@ -1,61 +1,231 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projeto Cultura Afro-Brasileira</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resistência Cultural Banto</title>
+  <style>
+    /* RESET SIMPLES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff;
+      color: #222;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    /* HEADER / HERO */
+    header.hero {
+      position: relative;
+      height: 100vh;
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+    header.hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+      backdrop-filter: blur(3px);
+      z-index: 1;
+    }
+    header.hero .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 40px 30px;
+      background-color: rgba(0, 0, 0, 0.45);
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+      animation: fadeInUp 1.3s ease forwards;
+      opacity: 0;
+    }
+    header.hero .hero-content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      color: #f0c330;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+    }
+    header.hero .hero-content h1 .highlight-text {
+      font-weight: 900;
+      letter-spacing: 1.1px;
+    }
+    header.hero .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      color: #f4f4f4;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+    header.hero .hero-content strong {
+      color: #ffde59;
+    }
+    header.hero .hero-content em {
+      font-style: italic;
+      color: #ffd966;
+    }
+    header.hero button {
+      padding: 14px 35px;
+      font-size: 1.15rem;
+      border: none;
+      background-color: #f0c330;
+      color: #222;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(240,195,48,0.6);
+    }
+    header.hero button:hover {
+      background-color: #ffc107;
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(255,193,7,0.8);
+    }
+    /* SEÇÕES */
+    section {
+      padding: 100px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section h2 {
+      font-size: 2.4rem;
+      color: #222;
+      margin-bottom: 30px;
+      text-align: center;
+      letter-spacing: 1.1px;
+    }
+    section p {
+      font-size: 1.15rem;
+      max-width: 800px;
+      margin: 0 auto;
+      color: #444;
+      line-height: 1.8;
+      text-align: center;
+    }
+    /* RODAPÉ */
+    footer {
+      background-color: #222;
+      color: #ddd;
+      text-align: center;
+      padding: 25px 10px;
+      font-size: 0.95rem;
+      letter-spacing: 0.6px;
+    }
+    /* ANIMAÇÃO FADEINUP */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* RESPONSIVIDADE */
+    @media (max-width: 768px) {
+      header.hero .hero-content h1 {
+        font-size: 2rem;
+      }
+      header.hero .hero-content p {
+        font-size: 1.1rem;
+      }
+      section {
+        padding: 70px 15px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Projeto Cultura Afro-Brasileira</h1>
-      <nav>
-        <ul>
-          <li><a href="#home">Início</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#conteudo">Conteúdo</a></li>
-        </ul>
-      </nav>
+
+  <header class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Bem-vindo ao nosso <span class="highlight-text">espaço de resistência cultural!</span></h1>
+      <p>Explore a influência da <strong>cultura Banto no Brasil</strong> e os impactos do <strong>colonialismo europeu na África</strong> através da <em>tecnologia</em>, <em>religiosidade</em> e <em>arte</em>.</p>
+      <button onclick="scrollToSection()">Saiba Mais</button>
     </div>
   </header>
 
-  <section id="home" class="hero fade-in">
-    <div class="overlay"></div>
-    <div class="container">
-      <h2 class="highlight-text">Bem-vindo ao nosso espaço de resistência cultural!</h2>
-      <p class="hero-description">Explore a influência da cultura Banto no Brasil e os impactos do colonialismo europeu na África através da tecnologia, religiosidade e arte.</p>
-      <a href="#sobre" class="btn-cta">Descubra Mais</a>
-    </div>
+  <section id="sobre">
+    <h2>Sobre a Cultura Banto</h2>
+    <p>
+      A cultura Banto é um conjunto rico de tradições, línguas e religiões originárias de diversos povos africanos que influenciaram profundamente a formação cultural do Brasil. Desde a música, dança, religiosidade até a arte e a tecnologia popular, essa herança resiste e se reinventa.
+    </p>
   </section>
 
-  <section id="sobre" class="fade-in reveal">
-    <div class="container">
-      <h2>Sobre o Projeto</h2>
-      <p>Este site foi criado para mostrar como as raízes africanas moldaram o Brasil atual. Analisamos símbolos Adinkra, religiosidade, resistência e como a tecnologia pode resgatar memórias apagadas pela colonização.</p>
-    </div>
+  <section id="colonialismo">
+    <h2>Impactos do Colonialismo Europeu</h2>
+    <p>
+      O colonialismo europeu teve efeitos devastadores na África, incluindo o Brasil colonial. O domínio europeu não apenas explorou recursos e pessoas, mas também tentou apagar culturas inteiras, impondo religiões e valores ocidentais. A resistência cultural é uma resposta poderosa a esse passado.
+    </p>
   </section>
 
-  <section id="conteudo" class="fade-in reveal">
-    <div class="container">
-      <h2>O que você vai encontrar aqui</h2>
-      <ul>
-        <li>História e resistência dos povos Banto</li>
-        <li>Impactos do colonialismo alemão na África</li>
-        <li>Símbolos Adinkra e seus significados</li>
-        <li>Religiosidade afro-brasileira</li>
-        <li>Projetos com tecnologia e cultura</li>
-      </ul>
-    </div>
+  <section id="tecnologia">
+    <h2>Tecnologia e Resistência</h2>
+    <p>
+      A tecnologia é uma ferramenta moderna que tem permitido documentar, preservar e promover a cultura Banto, conectando comunidades e difundindo conhecimento. Do digital às artes tradicionais, o futuro da resistência cultural passa pela inovação tecnológica.
+    </p>
   </section>
 
   <footer>
-    <div class="container">
-      <p>&copy; 2025 Projeto Cultura Afro-Brasileira. Todos os direitos reservados.</p>
-    </div>
+    &copy; 2025 Resistência Cultural Banto. Todos os direitos reservados.
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Scroll suave para a próxima seção
+    function scrollToSection() {
+      const section = document.querySelector('section');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Animação de revelar seções ao scrollar
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+
+    // Parallax simples na hero
+    window.addEventListener('scroll', () => {
+      const hero = document.querySelector('.hero');
+      let scrollY = window.scrollY;
+      hero.style.backgroundPositionY = `${scrollY * 0.5}px`;
+    });
+
+    // Dispara animação do hero-content
+    window.addEventListener('load', () => {
+      const heroContent = document.querySelector('.hero-content');
+      heroContent.style.opacity = '1';
+    });
+  </script>
 </body>
 </html>
