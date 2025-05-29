@@ -4,228 +4,281 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Resistência Cultural Banto</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <style>
-    /* RESET SIMPLES */
+    /* Reset básico */
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
     }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #fff;
-      color: #222;
-      line-height: 1.6;
+      font-family: 'Lora', serif;
+      background: linear-gradient(135deg, #1c1c2e, #3a2f2f);
+      color: #eee;
       scroll-behavior: smooth;
+      line-height: 1.6;
     }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-    /* HEADER / HERO */
-    header.hero {
-      position: relative;
-      height: 100vh;
-      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+
+    /* Menu fixo no topo */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(28,28,46,0.95);
       display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 0 20px;
-      color: #fff;
+      gap: 2rem;
+      padding: 1rem 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+      font-weight: 600;
+    }
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+      padding-bottom: 3px;
+      border-bottom: 3px solid transparent;
+    }
+    nav a.active,
+    nav a:hover {
+      color: #f5a623;
+      border-bottom-color: #f5a623;
+    }
+
+    /* Container central */
+    .container {
+      max-width: 960px;
+      margin: 100px auto 40px;
+      padding: 0 1rem;
+    }
+
+    /* Título principal */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
       text-align: center;
-      overflow: hidden;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 4px #0008;
     }
-    header.hero .overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
-      backdrop-filter: blur(3px);
-      z-index: 1;
+    p.intro {
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      font-size: 1.25rem;
+      text-align: center;
+      color: #ddd;
+      text-shadow: 1px 1px 4px #0008;
     }
-    header.hero .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      padding: 40px 30px;
-      background-color: rgba(0, 0, 0, 0.45);
-      border-radius: 15px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
-      animation: fadeInUp 1.3s ease forwards;
-      opacity: 0;
-    }
-    header.hero .hero-content h1 {
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-      color: #f0c330;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
-    }
-    header.hero .hero-content h1 .highlight-text {
-      font-weight: 900;
-      letter-spacing: 1.1px;
-    }
-    header.hero .hero-content p {
-      font-size: 1.3rem;
-      margin-bottom: 30px;
-      color: #f4f4f4;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-    }
-    header.hero .hero-content strong {
-      color: #ffde59;
-    }
-    header.hero .hero-content em {
-      font-style: italic;
-      color: #ffd966;
-    }
-    header.hero button {
-      padding: 14px 35px;
-      font-size: 1.15rem;
-      border: none;
-      background-color: #f0c330;
-      color: #222;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
+
+    /* Botão chamativo */
+    .btn {
+      display: inline-block;
+      background: #f5a623;
+      color: #2b1b00;
+      padding: 0.7rem 2rem;
+      border-radius: 25px;
       font-weight: 700;
-      box-shadow: 0 4px 12px rgba(240,195,48,0.6);
-    }
-    header.hero button:hover {
-      background-color: #ffc107;
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(255,193,7,0.8);
-    }
-    /* SEÇÕES */
-    section {
-      padding: 100px 20px;
-      max-width: 1100px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 3px 6px rgba(245,166,35,0.6);
       margin: 0 auto;
+      display: block;
+      width: fit-content;
+    }
+    .btn:hover {
+      background: #d48806;
+      box-shadow: 0 6px 10px rgba(212,136,6,0.8);
+    }
+
+    /* Seções com fade-in */
+    section {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      margin-bottom: 4rem;
     }
     section.visible {
       opacity: 1;
       transform: translateY(0);
     }
-    section h2 {
-      font-size: 2.4rem;
-      color: #222;
-      margin-bottom: 30px;
-      text-align: center;
-      letter-spacing: 1.1px;
+
+    /* Carrossel simples */
+    .carousel {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
-    section p {
-      font-size: 1.15rem;
-      max-width: 800px;
-      margin: 0 auto;
-      color: #444;
-      line-height: 1.8;
-      text-align: center;
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
     }
-    /* RODAPÉ */
+    .carousel-images img {
+      width: 100%;
+      flex-shrink: 0;
+      object-fit: cover;
+      user-select: none;
+    }
+    .carousel-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .carousel-controls button {
+      pointer-events: all;
+      background: rgba(0,0,0,0.4);
+      border: none;
+      color: #f5a623;
+      font-size: 2rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+    .carousel-controls button:hover {
+      background: #f5a623;
+      color: #2b1b00;
+    }
+
+    /* Rodapé */
     footer {
-      background-color: #222;
-      color: #ddd;
       text-align: center;
-      padding: 25px 10px;
-      font-size: 0.95rem;
-      letter-spacing: 0.6px;
+      padding: 2rem 1rem;
+      background: #2a2a3c;
+      color: #888;
+      font-size: 0.9rem;
+      box-shadow: inset 0 2px 8px #0008;
     }
-    /* ANIMAÇÃO FADEINUP */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
+
+    /* Media queries para responsividade */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.2rem;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    /* RESPONSIVIDADE */
-    @media (max-width: 768px) {
-      header.hero .hero-content h1 {
-        font-size: 2rem;
-      }
-      header.hero .hero-content p {
-        font-size: 1.1rem;
-      }
-      section {
-        padding: 70px 15px;
+      nav {
+        gap: 1rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <header class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>Bem-vindo ao nosso <span class="highlight-text">espaço de resistência cultural!</span></h1>
-      <p>Explore a influência da <strong>cultura Banto no Brasil</strong> e os impactos do <strong>colonialismo europeu na África</strong> através da <em>tecnologia</em>, <em>religiosidade</em> e <em>arte</em>.</p>
-      <button onclick="scrollToSection()">Saiba Mais</button>
+<nav>
+  <a href="#home" class="active">Home</a>
+  <a href="#cultura">Cultura Banto</a>
+  <a href="#colonialismo">Colonialismo</a>
+  <a href="#arte">Arte e Religião</a>
+  <a href="#contato">Contato</a>
+</nav>
+
+<div class="container" id="home">
+  <h1>Resistência Cultural Banto</h1>
+  <p class="intro">
+    Bem-vindo ao nosso espaço de resistência cultural! Explore a influência da cultura Banto no Brasil e os impactos do colonialismo europeu na África através da tecnologia, religiosidade e arte.
+  </p>
+
+  <div class="carousel">
+    <div class="carousel-images">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Arte Banto 1" />
+      <img src="https://images.unsplash.com/photo-1549887534-36b47f123b9c?auto=format&fit=crop&w=800&q=80" alt="Arte Banto 2" />
+      <img src="https://images.unsplash.com/photo-1520221639367-6b07f08b4a36?auto=format&fit=crop&w=800&q=80" alt="Arte Banto 3" />
     </div>
-  </header>
+    <div class="carousel-controls">
+      <button id="prev">&#10094;</button>
+      <button id="next">&#10095;</button>
+    </div>
+  </div>
 
-  <section id="sobre">
-    <h2>Sobre a Cultura Banto</h2>
-    <p>
-      A cultura Banto é um conjunto rico de tradições, línguas e religiões originárias de diversos povos africanos que influenciaram profundamente a formação cultural do Brasil. Desde a música, dança, religiosidade até a arte e a tecnologia popular, essa herança resiste e se reinventa.
-    </p>
-  </section>
+  <button class="btn" onclick="alert('Explore nosso conteúdo cultural!')">Comece a explorar</button>
+</div>
 
-  <section id="colonialismo">
-    <h2>Impactos do Colonialismo Europeu</h2>
-    <p>
-      O colonialismo europeu teve efeitos devastadores na África, incluindo o Brasil colonial. O domínio europeu não apenas explorou recursos e pessoas, mas também tentou apagar culturas inteiras, impondo religiões e valores ocidentais. A resistência cultural é uma resposta poderosa a esse passado.
-    </p>
-  </section>
+<section id="cultura" class="container">
+  <h2>Cultura Banto</h2>
+  <p>A cultura Banto tem uma riqueza imensa, presente na música, na língua, nas religiões e nas tradições. Sua influência é fundamental para entender a formação cultural brasileira.</p>
+</section>
 
-  <section id="tecnologia">
-    <h2>Tecnologia e Resistência</h2>
-    <p>
-      A tecnologia é uma ferramenta moderna que tem permitido documentar, preservar e promover a cultura Banto, conectando comunidades e difundindo conhecimento. Do digital às artes tradicionais, o futuro da resistência cultural passa pela inovação tecnológica.
-    </p>
-  </section>
+<section id="colonialismo" class="container">
+  <h2>Impactos do Colonialismo</h2>
+  <p>O colonialismo europeu na África causou grandes mudanças sociais, econômicas e culturais que ainda refletem no presente.</p>
+</section>
 
-  <footer>
-    &copy; 2025 Resistência Cultural Banto. Todos os direitos reservados.
-  </footer>
+<section id="arte" class="container">
+  <h2>Arte e Religião</h2>
+  <p>Explore a religiosidade e os símbolos ancestrais como os Adinkra, presentes nas tradições e artes do povo Banto.</p>
+</section>
 
-  <script>
-    // Scroll suave para a próxima seção
-    function scrollToSection() {
-      const section = document.querySelector('section');
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+<footer id="contato">
+  <p>© 2025 Resistência Cultural Banto - Desenvolvido por Kyrell</p>
+</footer>
+
+<script>
+  // Scroll suave já ativado via CSS scroll-behavior
+
+  // Ativar menu fixo com destaque da seção ativa
+  const sections = document.querySelectorAll('section, #home');
+  const navLinks = document.querySelectorAll('nav a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 110;
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
       }
-    }
-
-    // Animação de revelar seções ao scrollar
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.3 });
-
-    document.querySelectorAll('section').forEach(sec => observer.observe(sec));
-
-    // Parallax simples na hero
-    window.addEventListener('scroll', () => {
-      const hero = document.querySelector('.hero');
-      let scrollY = window.scrollY;
-      hero.style.backgroundPositionY = `${scrollY * 0.5}px`;
     });
-
-    // Dispara animação do hero-content
-    window.addEventListener('load', () => {
-      const heroContent = document.querySelector('.hero-content');
-      heroContent.style.opacity = '1';
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
     });
-  </script>
+  });
+
+  // Fade-in ao scroll
+  const fadeSections = document.querySelectorAll('section, #home');
+
+  function checkFade() {
+    fadeSections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        section.classList.add('visible');
+      }
+    });
+  }
+  window.addEventListener('scroll', checkFade);
+  window.addEventListener('load', checkFade);
+
+  // Carrossel simples
+  const carouselImages = document.querySelector('.carousel-images');
+  const images = document.querySelectorAll('.carousel-images img');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  let index = 0;
+
+  function showSlide(i) {
+    if (i < 0) index = images.length - 1;
+    else if (i >= images.length) index = 0;
+    else index = i;
+    carouselImages.style.transform = `translateX(${-index * 100}%)`;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    showSlide(index - 1);
+  });
+  nextBtn.addEventListener('click', () => {
+    showSlide(index + 1);
+  });
+
+  // Começa no slide 0
+  showSlide(0);
+</script>
+
 </body>
 </html>

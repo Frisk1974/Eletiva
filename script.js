@@ -1,29 +1,59 @@
-// Scroll suave ao clicar no botão
-function scrollToSection() {
-  const nextSection = document.querySelector('section');
-  if (nextSection) {
-    nextSection.scrollIntoView({ behavior: 'smooth' });
-  }
-}
+// Scroll suave tá ativado no CSS com scroll-behavior
 
-// Revelar seções com animação quando aparecem na tela
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
+// Menu fixo com destaque do link ativo
+const sections = document.querySelectorAll('section, #home');
+const navLinks = document.querySelectorAll('nav a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 110;
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute('id');
     }
   });
-}, {
-  threshold: 0.2
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
 });
 
-document.querySelectorAll('section').forEach(section => {
-  observer.observe(section);
+// Fade-in das seções ao scroll
+const fadeSections = document.querySelectorAll('section, #home');
+
+function checkFade() {
+  fadeSections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      section.classList.add('visible');
+    }
+  });
+}
+window.addEventListener('scroll', checkFade);
+window.addEventListener('load', checkFade);
+
+// Carrossel simples
+const carouselImages = document.querySelector('.carousel-images');
+const images = document.querySelectorAll('.carousel-images img');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+let index = 0;
+
+function showSlide(i) {
+  if (i < 0) index = images.length - 1;
+  else if (i >= images.length) index = 0;
+  else index = i;
+  carouselImages.style.transform = `translateX(${-index * 100}%)`;
+}
+
+prevBtn.addEventListener('click', () => {
+  showSlide(index - 1);
+});
+nextBtn.addEventListener('click', () => {
+  showSlide(index + 1);
 });
 
-// Parallax background extra suave
-window.addEventListener('scroll', function () {
-  const hero = document.querySelector('.hero');
-  const scrollY = window.scrollY;
-  hero.style.backgroundPositionY = `${scrollY * 0.5}px`;
-});
+// Começa no slide 0
+showSlide(0);
