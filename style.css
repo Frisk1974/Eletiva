@@ -1,86 +1,184 @@
-/* Hero refinado com legibilidade */
-.hero {
-  position: relative;
-  height: 100vh;
-  background-image: url('sua-imagem.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+/* ======= RESET BÁSICO ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9f9f9;
+  color: #222;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ======= MENU FIXO ======= */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #121212cc; /* quase preto com transparência */
+  color: white;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 0 20px;
-  color: #fff;
+  padding: 1rem 0;
+  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: background 0.3s;
 }
 
-.overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
-  backdrop-filter: blur(2px);
-  z-index: 1;
+nav.scrolled {
+  background: #121212ee;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 900px;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
-  animation: fadeInUp 1.2s ease-in-out forwards;
-  opacity: 0;
-}
-
-.hero-content h1 {
-  font-size: 2.8rem;
-  margin-bottom: 20px;
-  color: #f0c330;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-}
-
-.hero-content p {
-  font-size: 1.2rem;
-  line-height: 1.7;
-  color: #f8f8f8;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
-}
-
-button {
-  margin-top: 30px;
-  padding: 12px 28px;
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  font-weight: 600;
   font-size: 1.1rem;
-  border: none;
-  background: #f0c330;
-  color: #121212;
-  border-radius: 10px;
+}
+
+nav ul li {
   cursor: pointer;
-  transition: all 0.3s ease;
+  position: relative;
 }
 
-button:hover {
-  background: #ffc107;
-  transform: scale(1.08);
+nav ul li.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #e63946;
+  border-radius: 2px;
 }
 
-/* Scroll Reveal Sections */
+/* ======= SEÇÕES ======= */
 section {
-  padding: 100px 20px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s ease-out, transform 1s ease-out;
+  min-height: 100vh;
+  padding: 120px 20px 60px; /* espaço pro menu fixo */
+  max-width: 900px;
+  margin: auto;
 }
 
-section.visible {
-  opacity: 1;
-  transform: translateY(0);
+h1,
+h2 {
+  color: #1d3557;
+  margin-bottom: 1rem;
 }
 
-/* Fade-in animação */
+p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* ======= ÍCONES ANIMADOS ======= */
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 2rem 0;
+}
+
+.icon {
+  font-size: 3rem;
+  color: #e63946;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+.icon:hover {
+  transform: scale(1.3) rotate(15deg);
+  color: #457b9d;
+}
+
+/* ======= MODAL ======= */
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.modal-bg.active {
+  display: flex;
+}
+
+.modal {
+  background: white;
+  max-width: 500px;
+  width: 90%;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #e63946;
+}
+
+/* ======= BOTÃO MODAL ======= */
+.btn-modal {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  background: #e63946;
+  color: white;
+  font-weight: 700;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin: 1rem 0 2rem;
+}
+
+.btn-modal:hover {
+  background: #d62828;
+}
+
+/* ======= MAPA INTERATIVO ======= */
+#map {
+  width: 100%;
+  height: 400px;
+  border-radius: 10px;
+  margin: 2rem 0 4rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ======= SCROLL SUAVE ======= */
+html {
+  scroll-behavior: smooth;
 }
