@@ -1,1 +1,86 @@
-que
+/* Hero refinado com legibilidade */
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url('sua-imagem.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  color: #fff;
+}
+
+.overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1.2s ease-in-out forwards;
+  opacity: 0;
+}
+
+.hero-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: #f0c330;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #f8f8f8;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+button {
+  margin-top: 30px;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  border: none;
+  background: #f0c330;
+  color: #121212;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #ffc107;
+  transform: scale(1.08);
+}
+
+/* Scroll Reveal Sections */
+section {
+  padding: 100px 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade-in animação */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
