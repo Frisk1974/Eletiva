@@ -1,160 +1,86 @@
-/* Reset básico */
-* {
-  margin: 0; padding: 0; box-sizing: border-box;
-}
-body {
-  font-family: 'Lora', serif;
-  background: linear-gradient(135deg, #1c1c2e, #3a2f2f);
-  color: #eee;
-  scroll-behavior: smooth;
-  line-height: 1.6;
-}
-
-/* Menu fixo no topo */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  background: rgba(28,28,46,0.95);
+/* Hero refinado com legibilidade */
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url('sua-imagem.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 2rem;
-  padding: 1rem 0;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.7);
-  font-weight: 600;
-}
-nav a {
-  color: #ccc;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: color 0.3s;
-  padding-bottom: 3px;
-  border-bottom: 3px solid transparent;
-}
-nav a.active,
-nav a:hover {
-  color: #f5a623;
-  border-bottom-color: #f5a623;
+  padding: 0 20px;
+  color: #fff;
 }
 
-/* Container central */
-.container {
-  max-width: 960px;
-  margin: 100px auto 40px;
-  padding: 0 1rem;
+.overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+  backdrop-filter: blur(2px);
+  z-index: 1;
 }
 
-/* Título principal */
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
   text-align: center;
-  margin-bottom: 1rem;
-  text-shadow: 1px 1px 4px #0008;
-}
-p.intro {
-  max-width: 700px;
-  margin: 0 auto 3rem;
-  font-size: 1.25rem;
-  text-align: center;
-  color: #ddd;
-  text-shadow: 1px 1px 4px #0008;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1.2s ease-in-out forwards;
+  opacity: 0;
 }
 
-/* Botão chamativo */
-.btn {
-  display: inline-block;
-  background: #f5a623;
-  color: #2b1b00;
-  padding: 0.7rem 2rem;
-  border-radius: 25px;
-  font-weight: 700;
+.hero-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: #f0c330;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.hero-content p {
   font-size: 1.2rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  box-shadow: 0 3px 6px rgba(245,166,35,0.6);
-  margin: 0 auto;
-  display: block;
-  width: fit-content;
-}
-.btn:hover {
-  background: #d48806;
-  box-shadow: 0 6px 10px rgba(212,136,6,0.8);
+  line-height: 1.7;
+  color: #f8f8f8;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
 }
 
-/* Seções com fade-in */
+button {
+  margin-top: 30px;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  border: none;
+  background: #f0c330;
+  color: #121212;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #ffc107;
+  transform: scale(1.08);
+}
+
+/* Scroll Reveal Sections */
 section {
+  padding: 100px 20px;
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  margin-bottom: 4rem;
+  transition: opacity 1s ease-out, transform 1s ease-out;
 }
+
 section.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Carrossel simples */
-.carousel {
-  position: relative;
-  max-width: 700px;
-  margin: 0 auto 3rem;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-}
-.carousel-images {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-.carousel-images img {
-  width: 100%;
-  flex-shrink: 0;
-  object-fit: cover;
-  user-select: none;
-}
-.carousel-controls {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-.carousel-controls button {
-  pointer-events: all;
-  background: rgba(0,0,0,0.4);
-  border: none;
-  color: #f5a623;
-  font-size: 2rem;
-  padding: 0.2rem 0.6rem;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  user-select: none;
-}
-.carousel-controls button:hover {
-  background: #f5a623;
-  color: #2b1b00;
-}
-
-/* Rodapé */
-footer {
-  text-align: center;
-  padding: 2rem 1rem;
-  background: #2a2a3c;
-  color: #888;
-  font-size: 0.9rem;
-  box-shadow: inset 0 2px 8px #0008;
-}
-
-/* Responsividade */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 2.2rem;
-  }
-  nav {
-    gap: 1rem;
-  }
+/* Fade-in animação */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
