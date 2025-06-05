@@ -119,7 +119,7 @@
     section p {
       font-size: 1.15rem;
       max-width: 800px;
-      margin: 0 auto;
+      margin: 0 auto 25px auto;
       color: #444;
       line-height: 1.8;
       text-align: center;
@@ -159,34 +159,55 @@
   </style>
 </head>
 <body>
+
   <header class="hero">
     <div class="overlay"></div>
     <div class="hero-content">
       <h1>Bem-vindo ao nosso <span class="highlight-text">espaço de resistência cultural!</span></h1>
       <p>Explore a influência da <strong>cultura Banto no Brasil</strong> e os impactos do <strong>colonialismo europeu na África</strong> através da <em>tecnologia</em>, <em>religiosidade</em> e <em>arte</em>.</p>
       <button onclick="scrollToSection()">Saiba Mais</button>
-      <br><br>
-      <a href="pagina2.html">
-        <button style="margin-top: 10px; background-color: #4caf50; color: white;">Ir para a Página 2</button>
-      </a>
     </div>
   </header>
-  <!-- Resto do conteúdo permanece inalterado -->
-  <section id="sobre">...</section>
-  <section id="colonialismo">...</section>
-  <section id="tecnologia">...</section>
-  <section id="religiosidade">...</section>
-  <section id="arte">...</section>
+
+<section id="sobre">
+    <h2>Sobre a Cultura Banto</h2>
+    <p>A cultura Banto não é uma só: ela representa centenas de etnias africanas, como os Kongo, Ovimbundu, Mbundu e Zulu. Esses povos possuíam sistemas organizados de governo, espiritualidade baseada em forças da natureza e ancestralidade, além de um profundo conhecimento da metalurgia, agricultura e medicina tradicional. No Brasil, essa cultura sobreviveu à violência colonial e hoje se manifesta nos terreiros, no samba, no jongo, na capoeira e até na língua portuguesa com palavras como "moleque" e "caçula".</p>
+  </section>
+
+  <section id="colonialismo">
+    <h2>Impactos do Colonialismo Europeu</h2>
+    <p>O colonialismo europeu impôs fronteiras artificiais, destruiu culturas milenares e instaurou uma lógica de exploração que ainda hoje marca desigualdades no Brasil e na África. A divisão de territórios africanos durante a Conferência de Berlim (1884-85) ignorou completamente os povos que ali viviam, alimentando conflitos até hoje. O modelo de ensino colonial desvalorizava as línguas africanas e impunha o cristianismo como verdade absoluta. No Brasil, isso se refletiu na marginalização das religiões de matriz africana e na criminalização de práticas culturais negras.</p>
+  </section>
+
+  <section id="tecnologia">
+    <h2>Tecnologia e Resistência</h2>
+    <p>A tecnologia é aliada da resistência cultural. Plataformas digitais têm servido para mapear quilombos, divulgar saberes ancestrais e conectar artistas e intelectuais negros do mundo todo. A estética afrofuturista, por exemplo, mistura tradições africanas com tecnologia de ponta para projetar futuros onde o protagonismo negro é central. Aplicativos e projetos como o "Afripedia" e "Museu dos Povos Indígenas e Afrodescendentes Digitais" ajudam a recontar nossa história sob outra ótica. Até os símbolos Adinkra, vindos de povos da África Ocidental, estão sendo digitalizados como fonte de conhecimento gráfico e espiritual.</p>
+  </section>
+
+  <section id="religiosidade">
+    <h2>Religiosidade e Cosmologia</h2>
+    <p>A espiritualidade Banto gira em torno da ancestralidade, do respeito à natureza e à interconexão entre todos os seres. Religiões como o Candomblé e a Umbanda têm raízes profundas nessa visão, com divindades que representam forças naturais e ancestrais que guiam os vivos. A prática do culto aos antepassados é uma forma de manter viva a memória coletiva e preservar a identidade diante da opressão. Os rituais, cantos e danças não são apenas cerimônias, mas formas de comunicação e resistência espiritual.</p>
+  </section>
+
+  <section id="arte">
+    <h2>Arte e Expressão Cultural</h2>
+    <p>Desde máscaras rituais a grafites urbanos com inspiração africana, a arte Banto é uma arma poderosa de afirmação identitária. No Brasil, essa influência está presente em blocos afro, esculturas de barro, artesanato e na estética de movimentos culturais periféricos. A oralidade também é uma forma de arte — os contadores de histórias (griots) transmitem sabedoria de geração em geração, e hoje isso se reflete em slams de poesia, hip-hop e cinema negro.</p>
+  </section>
+
   <footer>
     &copy; 2025 Resistência Cultural Banto. Todos os direitos reservados.
   </footer>
+
   <script>
+    // Scroll suave para a seção "sobre"
     function scrollToSection() {
-      const section = document.querySelector('section');
-      if (section) {
+      const section = document.querySelector('#sobre');
+      if(section) {
         section.scrollIntoView({ behavior: 'smooth' });
       }
     }
+
+    // Revela seções com animação ao aparecer na tela
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting){
@@ -194,12 +215,17 @@
         }
       });
     }, { threshold: 0.3 });
+
     document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+
+    // Parallax simples na hero
     window.addEventListener('scroll', () => {
       const hero = document.querySelector('.hero');
       let scrollY = window.scrollY;
       hero.style.backgroundPositionY = `${scrollY * 0.5}px`;
     });
+
+    // Ativa animação do conteúdo da hero no carregamento
     window.addEventListener('load', () => {
       const heroContent = document.querySelector('.hero-content');
       heroContent.style.opacity = '1';
