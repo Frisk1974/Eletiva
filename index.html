@@ -119,7 +119,7 @@
     section p {
       font-size: 1.15rem;
       max-width: 800px;
-      margin: 0 auto;
+      margin: 0 auto 25px auto;
       color: #444;
       line-height: 1.8;
       text-align: center;
@@ -174,12 +174,24 @@
     <p>
       A cultura Banto é um conjunto rico de tradições, línguas e religiões originárias de diversos povos africanos que influenciaram profundamente a formação cultural do Brasil. Desde a música, dança, religiosidade até a arte e a tecnologia popular, essa herança resiste e se reinventa.
     </p>
+    <p>
+      No Brasil, a influência Banto está presente nas manifestações culturais como o samba, o candomblé e o maracatu, que são exemplos vivos da mistura de tradições africanas com o contexto brasileiro. A preservação dessas práticas é fundamental para entender a identidade cultural do país.
+    </p>
+    <p>
+      Além disso, a língua e os símbolos Banto, como os Adinkra, carregam significados profundos que conectam gerações e comunidades, mostrando que a resistência cultural não é só memória, mas também ação contínua.
+    </p>
   </section>
 
   <section id="colonialismo">
     <h2>Impactos do Colonialismo Europeu</h2>
     <p>
       O colonialismo europeu teve efeitos devastadores na África, incluindo o Brasil colonial. O domínio europeu não apenas explorou recursos e pessoas, mas também tentou apagar culturas inteiras, impondo religiões e valores ocidentais. A resistência cultural é uma resposta poderosa a esse passado.
+    </p>
+    <p>
+      No contexto alemão, o colonialismo teve características específicas, com a imposição de fronteiras, exploração econômica e uma tentativa sistemática de eliminar identidades culturais locais. Isso criou feridas históricas que ainda afetam a organização social e política da África.
+    </p>
+    <p>
+      A luta contra esse colonialismo incluiu resistência armada, mas também formas culturais e espirituais, preservando línguas, religiões e símbolos, que hoje são elementos de orgulho e recuperação histórica para os povos africanos e suas diásporas.
     </p>
   </section>
 
@@ -188,6 +200,12 @@
     <p>
       A tecnologia é uma ferramenta moderna que tem permitido documentar, preservar e promover a cultura Banto, conectando comunidades e difundindo conhecimento. Do digital às artes tradicionais, o futuro da resistência cultural passa pela inovação tecnológica.
     </p>
+    <p>
+      Plataformas digitais, redes sociais e apps educacionais têm sido usados para ensinar línguas Banto, mapear símbolos culturais e criar espaços virtuais de discussão e valorização da história africana e afro-brasileira.
+    </p>
+    <p>
+      Além disso, tecnologias como a inteligência artificial e realidade aumentada estão sendo exploradas para criar experiências imersivas que aproximam o público jovem dessas tradições, potencializando a continuidade da cultura de forma criativa e interativa.
+    </p>
   </section>
 
   <footer>
@@ -195,15 +213,15 @@
   </footer>
 
   <script>
-    // Scroll suave para a próxima seção
+    // Scroll suave para a seção "sobre"
     function scrollToSection() {
-      const section = document.querySelector('section');
-      if (section) {
+      const section = document.querySelector('#sobre');
+      if(section) {
         section.scrollIntoView({ behavior: 'smooth' });
       }
     }
 
-    // Animação de revelar seções ao scrollar
+    // Revela seções com animação ao aparecer na tela
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting){
@@ -221,7 +239,7 @@
       hero.style.backgroundPositionY = `${scrollY * 0.5}px`;
     });
 
-    // Dispara animação do hero-content
+    // Ativa animação do conteúdo da hero no carregamento
     window.addEventListener('load', () => {
       const heroContent = document.querySelector('.hero-content');
       heroContent.style.opacity = '1';
